@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.utils.SwerveModule;
 
-public class Swerve extends SubsystemBase {
+public class SwerveSubsystem extends SubsystemBase {
   private final SwerveModule[] modules;
 
   private final SwerveDriveOdometry swerveOdometry;
