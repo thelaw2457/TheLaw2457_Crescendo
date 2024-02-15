@@ -32,7 +32,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
   private final Timer timer;
 
-  public Swerve() {
+  public SwerveSubsystem() {
     gyro = new AHRS();
     zeroGyro();
 

@@ -134,6 +134,10 @@ public class Constants {
     );
   }
 
+  public static class OperatorConstants {
+    public static final int kDriverControllerPort = 0;
+  }
+
   public static class kAuto {
     /** PID Values. */
     public static final double X_CONTROLLER_KP = 1.0;
