@@ -185,7 +185,7 @@ public static class GripperConstants {
     public static final double closeCube = 30.0;
 }
 
-public static class IntakeConstants {
+public static class SpeedConstants {
 
   public static final boolean isTunable = true;
 
@@ -202,4 +202,5 @@ public static class IntakeConstants {
 public static class MarvinConstants {
   public static final double MARVIN_SPEED = 2000;
 }
+
 }
