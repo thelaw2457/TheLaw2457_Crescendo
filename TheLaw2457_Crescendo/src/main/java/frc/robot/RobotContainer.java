@@ -7,7 +7,13 @@ package frc.robot;
 import frc.robot.Constants.SpeedConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.BeltForward;
+import frc.robot.commands.BeltReverse;
 import frc.robot.commands.Drool;
+import frc.robot.commands.IntakeForward;
+import frc.robot.commands.IntakeReverse;
+import frc.robot.commands.LiftAscend;
+import frc.robot.commands.LiftDescend;
 import frc.robot.commands.Slurp;
 import frc.robot.commands.Spew;
 import frc.robot.commands.Spit;
@@ -82,12 +88,13 @@ public class RobotContainer {
     ));
 
     // Intake
-      new JoystickButton(xboxController, 1).whileTrue(new Slurp(m_intakeSubsystem, SpeedConstants.SLURP_SPEED));
-      new JoystickButton(xboxController, 4).whileTrue(new Spit(m_intakeSubsystem, SpeedConstants.SPIT_SPEED));
+      new JoystickButton(xboxController, 1).whileTrue(new IntakeForward(m_intakeSubsystem, SpeedConstants.INTAKE_FORWARD));
+      new JoystickButton(xboxController, 4).whileTrue(new IntakeReverse(m_intakeSubsystem, SpeedConstants.INTAKE_REVERSE));
 
     // Lift
-      new JoystickButton(xboxController, 5).whileTrue(new Slurp(m_liftSubsystem, SpeedConstants.SLURP_SPEED));
-      new JoystickButton(xboxController, 6).whileTrue(new Drool(m_liftSubsystem, SpeedConstants.DROOL_SPEED));
+      new JoystickButton(xboxController, 5).whileTrue(new LiftAscend(m_liftSubsystem, SpeedConstants.LIFT_UP
+      ));
+      new JoystickButton(xboxController, 6).whileTrue(new LiftDescend(m_liftSubsystem, SpeedConstants.LIFT_DOWN));
 
     // Shooter
       new JoystickButton(xboxController, 5).whileTrue(new Slurp(m_shooterSubsystem, SpeedConstants.SLURP_SPEED));
@@ -96,8 +103,8 @@ public class RobotContainer {
       new JoystickButton(xboxController,8).whileTrue(new Spew(m_shooterSubsystem, SpeedConstants.SPEW_SPEED));
 
     //BeltDrive
-      new JoystickButton(xboxController, 5).whileTrue(new Slurp(m_beltDriveSubsystem, SpeedConstants.SLURP_SPEED));
-      new JoystickButton(xboxController, 6).whileTrue(new Drool(m_beltDriveSubsystem, SpeedConstants.DROOL_SPEED));
+      new JoystickButton(xboxController, 5).whileTrue(new BeltForward(m_beltDriveSubsystem, SpeedConstants.BELT_FORWARD));
+      new JoystickButton(xboxController, 6).whileTrue(new BeltReverse(m_beltDriveSubsystem, SpeedConstants.BELT_REVERSE));
   }
 
   /**

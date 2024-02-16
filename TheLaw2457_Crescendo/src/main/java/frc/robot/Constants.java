@@ -189,6 +189,19 @@ public static class SpeedConstants {
 
   public static final boolean isTunable = true;
 
+  // Intake Speeds
+  public static final double INTAKE_FORWARD = 0.4;
+  public static final double INTAKE_REVERSE = 0.4;
+
+  // Lift Speeds
+  public static final double LIFT_UP = 0.4;
+  public static final double LIFT_DOWN = 0.4;
+
+  // Belt Speeds
+  public static final double BELT_FORWARD = 0.4;
+  public static final double BELT_REVERSE = 0.3;
+  
+  // Shooter Speeds
   public static final double DROOL_SPEED = -0.2;
   public static final double SPIT_SPEED = 0.5;
   public static final double SPEW_SPEED = 0.8; // 0.6
