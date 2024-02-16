@@ -20,6 +20,7 @@ public class LiftAscend extends Command {
     this.LIFT_SUBSYSTEM = lift;
     this.liftSpeed = speed;
 
+    addRequirements(LIFT_SUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
