@@ -34,8 +34,8 @@ public class Constants {
   public static class kSwerve {
     /** Constants that apply to the whole drive train. */
 
-    public static final double TRACK_WIDTH = Units.inchesToMeters(16.5); // Width of the drivetrain measured from the middle of the wheels.
-    public static final double WHEEL_BASE = Units.inchesToMeters(24.5); // Length of the drivetrain measured from the middle of the wheels.
+    public static final double TRACK_WIDTH = Units.inchesToMeters(22.4); // Width of the drivetrain measured from the middle of the wheels.
+    public static final double WHEEL_BASE = Units.inchesToMeters(18.3); // Length of the drivetrain measured from the middle of the wheels.
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
     public static final double NEO_MAX_SPEED = 5676;
@@ -99,35 +99,35 @@ public class Constants {
      * This is to make offset slightly more accurate and easier to measure.
      */
     public static final SwerveModuleConstants MOD_0_Constants = new SwerveModuleConstants(
-      5,
-      6,
-      0,
+      11,
+      12,
+      13,
       // 203.115234
       15.205
       //20.3
     );
 
     public static final SwerveModuleConstants MOD_1_Constants = new SwerveModuleConstants(
-      7,
-      8,
-      1,
+      21,
+      22,
+      23,
       // 191.074219
       239.677734375
       //238.711
     );
 
     public static final SwerveModuleConstants MOD_2_Constants = new SwerveModuleConstants(
-      9,
-      10,
-      2,
+      31,
+      32,
+      33,
       // 203.906250
       120.234375 //121.113 deg
     );
 
     public static final SwerveModuleConstants MOD_3_Constants = new SwerveModuleConstants(
-      11,
-      12,
-      3,
+      41,
+      42,
+      43,
       //181.845
       // 155.214844
       184.834

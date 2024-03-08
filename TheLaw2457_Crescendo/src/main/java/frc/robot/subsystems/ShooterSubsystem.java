@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
-  private final CANSparkFlex m_shooterDrive = new CANSparkFlex(15, MotorType.kBrushless);
+  private final CANSparkFlex m_shooterDrive = new CANSparkFlex(18, MotorType.kBrushless);
   public ShooterSubsystem() {
     m_shooterDrive.setIdleMode(IdleMode.kBrake);
     m_shooterDrive.setInverted(false);

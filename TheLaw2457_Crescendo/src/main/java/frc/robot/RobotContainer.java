@@ -53,9 +53,14 @@ public class RobotContainer {
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
+  public final SwerveSubsystem swerve;
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
+
+    swerve = new SwerveSubsystem();
+
     configureButtonBindings();
     configureSmartDashboard();
   }
@@ -86,6 +91,9 @@ public class RobotContainer {
       false,
       0
     ));
+
+    //Field Orientation
+    new JoystickButton(driverControl, 7).onTrue(swerve.zeroGyroCommand());
 
     // Intake
       new JoystickButton(xboxController, 1).whileTrue(new IntakeForward(m_intakeSubsystem, SpeedConstants.INTAKE_FORWARD));

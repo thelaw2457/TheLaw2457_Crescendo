@@ -38,9 +38,9 @@ public class SwerveSubsystem extends SubsystemBase {
 
     modules = new SwerveModule[] {
       new SwerveModule(0, Constants.kSwerve.MOD_0_Constants),
-      new SwerveModule(1, Constants.kSwerve.MOD_3_Constants),
+      new SwerveModule(1, Constants.kSwerve.MOD_1_Constants),
       new SwerveModule(2, Constants.kSwerve.MOD_2_Constants),
-      new SwerveModule(3, Constants.kSwerve.MOD_1_Constants),
+      new SwerveModule(3, Constants.kSwerve.MOD_3_Constants),
     };
 
     swerveOdometry = new SwerveDriveOdometry(Constants.kSwerve.KINEMATICS, getYaw(), getPositions());
