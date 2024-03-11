@@ -49,10 +49,10 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public void printAngles() {
-    System.out.println("Mod 0: " + modules[0].getCanCoder());
-    System.out.println("Mod 1: " + modules[1].getCanCoder());
-    System.out.println("Mod 2: " + modules[2].getCanCoder());
-    System.out.println("Mod 3: " + modules[3].getCanCoder());
+    SmartDashboard.putNumber("Mod 0: " , modules[0].getCanCoder());
+    SmartDashboard.putNumber("Mod 1: " , modules[1].getCanCoder());
+    SmartDashboard.putNumber("Mod 2: " , modules[2].getCanCoder());
+    SmartDashboard.putNumber("Mod 3: " , modules[3].getCanCoder());
   }
 
 

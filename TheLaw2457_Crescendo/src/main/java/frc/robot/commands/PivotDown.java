@@ -5,21 +5,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 
-public class IntakeReverse extends Command {
+public class PivotDown extends Command {
+  /** Creates a new PivotDown. */
 
-  private IntakeSubsystem INTAKE_SUBSYSTEM;
-  private double intakeSpeed;
+  private PivotSubsystem PIVOT_SUBSYSTEM;
+  private double pivotSpeed;
+  
 
-  /** Creates a new IntakeReverse. */
-  public IntakeReverse(IntakeSubsystem intake, double speed) {
+  public PivotDown(PivotSubsystem pivot, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
 
-    this.INTAKE_SUBSYSTEM = intake;
-    this.intakeSpeed = speed;
+    this.PIVOT_SUBSYSTEM = pivot;
+    this.pivotSpeed = speed;
 
-    addRequirements(INTAKE_SUBSYSTEM);
+    addRequirements(PIVOT_SUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
@@ -29,13 +30,13 @@ public class IntakeReverse extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    INTAKE_SUBSYSTEM.set(intakeSpeed);
+    PIVOT_SUBSYSTEM.set(pivotSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    INTAKE_SUBSYSTEM.set(0);
+    PIVOT_SUBSYSTEM.set(0);
   }
 
   // Returns true when the command should end.

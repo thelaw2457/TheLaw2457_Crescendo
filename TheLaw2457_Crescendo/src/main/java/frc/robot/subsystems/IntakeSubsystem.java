@@ -16,12 +16,16 @@ import frc.robot.Constants;
 public class IntakeSubsystem extends SubsystemBase {
 
   private final CANSparkMax m_intakeDrive = new CANSparkMax(7, MotorType.kBrushless);
+  private final CANSparkMax m_Conveyor = new CANSparkMax(8, MotorType.kBrushless);
   public final DigitalInput distanceSensor = new DigitalInput(4);
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
     // m_intakeDrive.restoreFactoryDefaults();
-    m_intakeDrive.setIdleMode(IdleMode.kBrake);
+    m_intakeDrive.setIdleMode(IdleMode.kCoast);
     m_intakeDrive.setInverted(false);
+
+    m_Conveyor.setIdleMode(IdleMode.kBrake);
+    m_Conveyor.setInverted(true);
   }
 
   @Override
@@ -35,10 +39,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void set(double intakeSpeed) {
     m_intakeDrive.set(intakeSpeed);
+    m_Conveyor.set(-intakeSpeed);
   }
 
   public void stop() {
     m_intakeDrive.set(0.0);
+    m_Conveyor.set(0);
   }
 }
 

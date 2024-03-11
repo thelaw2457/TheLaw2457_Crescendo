@@ -14,25 +14,32 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
-  private final CANSparkFlex m_shooterDrive = new CANSparkFlex(18, MotorType.kBrushless);
+  private final CANSparkFlex m_bottomShooter = new CANSparkFlex(18, MotorType.kBrushless);
+  private final CANSparkFlex m_topShooter = new CANSparkFlex(17, MotorType.kBrushless);
   public ShooterSubsystem() {
-    m_shooterDrive.setIdleMode(IdleMode.kBrake);
-    m_shooterDrive.setInverted(false);
+    m_bottomShooter.setIdleMode(IdleMode.kCoast);
+    m_bottomShooter.setInverted(false);
+
+    m_topShooter.setIdleMode(IdleMode.kCoast);
+    m_topShooter.setInverted(true);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     if(Constants.SpeedConstants.isTunable) {
-      SmartDashboard.putNumber("Speed", m_shooterDrive.get());
+      SmartDashboard.putNumber("Speed", m_bottomShooter.get());
+      SmartDashboard.putNumber("Speed", m_topShooter.get());
     }
   }
 
   public void set(double intakeSpeed) {
-    m_shooterDrive.set(intakeSpeed);
+    m_bottomShooter.set(intakeSpeed);
+    m_topShooter.set(intakeSpeed);
   }
 
   public void stop() {
-    m_shooterDrive.set(0.0);
+    m_bottomShooter.set(0.0);
+    m_topShooter.set(0);
   }
 }

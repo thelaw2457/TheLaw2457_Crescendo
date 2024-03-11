@@ -5,21 +5,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterLiftSubsystem;
 
-public class IntakeReverse extends Command {
+public class ShooterLiftDown extends Command {
 
-  private IntakeSubsystem INTAKE_SUBSYSTEM;
-  private double intakeSpeed;
+private ShooterLiftSubsystem SLIFT_SUBSYSTEM;
+private double sLiftSpeed;
 
-  /** Creates a new IntakeReverse. */
-  public IntakeReverse(IntakeSubsystem intake, double speed) {
+  /** Creates a new ShooterLiftDown. */
+  public ShooterLiftDown(ShooterLiftSubsystem sLift, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
 
-    this.INTAKE_SUBSYSTEM = intake;
-    this.intakeSpeed = speed;
+    this.SLIFT_SUBSYSTEM = sLift;
+    this.sLiftSpeed = speed;
 
-    addRequirements(INTAKE_SUBSYSTEM);
+    addRequirements(SLIFT_SUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
@@ -29,13 +29,13 @@ public class IntakeReverse extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    INTAKE_SUBSYSTEM.set(intakeSpeed);
+    SLIFT_SUBSYSTEM.set(sLiftSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    INTAKE_SUBSYSTEM.set(0);
+    SLIFT_SUBSYSTEM.set(0);
   }
 
   // Returns true when the command should end.

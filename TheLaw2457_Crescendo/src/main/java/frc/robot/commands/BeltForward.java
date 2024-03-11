@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.BeltDriveSubsystem;
-import frc.robot.Constants.SpeedConstants;
 
 public class BeltForward extends Command {
 
@@ -29,12 +28,14 @@ public class BeltForward extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    BELT_DRIVE.set(beltSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    BELT_DRIVE.set(0);
+  }
 
   // Returns true when the command should end.
   @Override

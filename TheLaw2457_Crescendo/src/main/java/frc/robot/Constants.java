@@ -25,7 +25,7 @@ public class Constants {
   public static final double ARM_MIN_EXT = -999;
   /** All joystick, button, and axis IDs. */
   public static class kControls {
-    public static final double AXIS_DEADZONE = 0.1;
+    public static final double AXIS_DEADZONE = 0.2;
 
     public static final int DRIVE_JOYSTICK_ID = 0;
   }
@@ -82,7 +82,7 @@ public class Constants {
     public static final double ANGLE_KF = 0.0;
     
     /** Swerve constraints. */
-    public static final double MAX_VELOCITY_METERS_PER_SECOND = 2.75; //initially 2.0
+    public static final double MAX_VELOCITY_METERS_PER_SECOND = 3; //initially 2.75 | OG 2
 
     /** Inversions. */
     public static final boolean DRIVE_MOTOR_INVERSION = true;
@@ -102,8 +102,8 @@ public class Constants {
       11,
       12,
       13,
-      // 203.115234
-      15.205
+      // -0.055 rot
+      -0.055 * 360
       //20.3
     );
 
@@ -111,8 +111,8 @@ public class Constants {
       21,
       22,
       23,
-      // 191.074219
-      239.677734375
+      // .457 rot
+      0.957 * 360
       //238.711
     );
 
@@ -120,8 +120,8 @@ public class Constants {
       31,
       32,
       33,
-      // 203.906250
-      120.234375 //121.113 deg
+      // 0.027 rot
+      0.027 * 360
     );
 
     public static final SwerveModuleConstants MOD_3_Constants = new SwerveModuleConstants(
@@ -129,8 +129,8 @@ public class Constants {
       42,
       43,
       //181.845
-      // 155.214844
-      184.834
+      // -0.223 rot
+      0.323 * 360
     );
   }
 
@@ -191,25 +191,27 @@ public static class SpeedConstants {
 
   // Intake Speeds
   public static final double INTAKE_FORWARD = 0.4;
-  public static final double INTAKE_REVERSE = 0.4;
+  public static final double INTAKE_REVERSE = -0.4;
 
   // Lift Speeds
   public static final double LIFT_UP = 0.4;
   public static final double LIFT_DOWN = 0.4;
 
   // Belt Speeds
-  public static final double BELT_FORWARD = 0.4;
-  public static final double BELT_REVERSE = 0.3;
+  public static final double BELT_FORWARD = 0.3;
+  public static final double BELT_REVERSE = -0.3;
   
   // Shooter Speeds
   public static final double DROOL_SPEED = -0.2;
-  public static final double SPIT_SPEED = 0.5;
-  public static final double SPEW_SPEED = 0.8; // 0.6
-  public static final double SLURP_SPEED = 0.15;
+  public static final double SPIT_SPEED = 0.42; //0.5
+  public static final double SPEW_SPEED = 0.42; // 0.8
+  public static final double SLURP_SPEED = 0; //0.15
   public static final double AUTO_DROOL_SPEED = -0.2;
   public static final double AUTO_SPIT_SPEED = 0.6;
   public static final double AUTO_SPEW_SPEED = 0.7; // 0.6
   public static final double AUTO_SLURP_SPEED = 0.15;
+  public static final double PIVOT_UP = 0.3;
+  public static final double PIVOT_DOWN = -0.3;
 }
 
 public static class MarvinConstants {
