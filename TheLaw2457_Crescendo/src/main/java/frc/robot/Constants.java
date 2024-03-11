@@ -195,7 +195,7 @@ public static class SpeedConstants {
 
   // Lift Speeds
   public static final double LIFT_UP = 0.4;
-  public static final double LIFT_DOWN = 0.4;
+  public static final double LIFT_DOWN = -0.4;
 
   // Belt Speeds
   public static final double BELT_FORWARD = 0.3;
