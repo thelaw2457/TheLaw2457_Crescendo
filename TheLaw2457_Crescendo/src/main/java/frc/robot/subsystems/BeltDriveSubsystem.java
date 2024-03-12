@@ -31,7 +31,7 @@ m_Roller.setInverted(true);
     // This method will be called once per scheduler run
     if(Constants.SpeedConstants.isTunable) {
       //SmartDashboard.putNumber("Speed", m_Conveyor.get());
-      SmartDashboard.putNumber("Speed", m_Roller.get());
+      SmartDashboard.putNumber("Roller Speed", m_Roller.get());
     }
   }
 

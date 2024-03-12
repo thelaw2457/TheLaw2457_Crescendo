@@ -14,6 +14,8 @@ import frc.robot.commands.IntakeForward;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.LiftAscend;
 import frc.robot.commands.LiftDescend;
+import frc.robot.commands.ShooterLiftDown;
+import frc.robot.commands.ShooterLiftUp;
 import frc.robot.commands.PivotUp;
 import frc.robot.commands.Slurp;
 import frc.robot.commands.Spew;
@@ -27,6 +29,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
+import frc.robot.subsystems.ShooterLiftSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -51,13 +54,11 @@ public class RobotContainer {
   private final LiftSubsystem m_liftSubsystem = new LiftSubsystem();
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final PivotSubsystem m_pivotSubsystem = new PivotSubsystem();
+  private final ShooterLiftSubsystem m_sLiftSubsystem = new ShooterLiftSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final Joystick driverControl = new Joystick(0);
   private final XboxController xboxController = new XboxController(1);
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -66,7 +67,7 @@ public class RobotContainer {
   }
 
   public void configureSmartDashboard() {
-    SmartDashboard.putNumber("Angle", 5);
+    
   }
 
   public void printWheelAngles() {
@@ -102,9 +103,13 @@ public class RobotContainer {
       // new JoystickButton(xboxController, 2).whileTrue(new IntakeForward(m_intakeSubsystem, SpeedConstants.INTAKE_FORWARD));
       // new JoystickButton(xboxController, 3).whileTrue(new IntakeReverse(m_intakeSubsystem, SpeedConstants.INTAKE_REVERSE));
 
+    //Shooter Lift
+      new JoystickButton(xboxController, 9).whileTrue(new ShooterLiftUp(m_sLiftSubsystem, SpeedConstants.SLIFT_UP));
+      new JoystickButton(xboxController, 10).whileTrue(new ShooterLiftDown(m_sLiftSubsystem, SpeedConstants.SLIFT_DOWN));
+
     // Lift
-      // new JoystickButton(xboxController, 2).whileTrue(new LiftAscend(m_liftSubsystem, SpeedConstants.LIFT_UP));
-      // new JoystickButton(xboxController, 3).whileTrue(new LiftDescend(m_liftSubsystem, SpeedConstants.LIFT_DOWN));
+      new JoystickButton(xboxController, 2).whileTrue(new LiftAscend(m_liftSubsystem, SpeedConstants.LIFT_UP));
+      new JoystickButton(xboxController, 3).whileTrue(new LiftDescend(m_liftSubsystem, SpeedConstants.LIFT_DOWN));
 
     // Shooter
       //new JoystickButton(xboxController, 5).whileTrue(new Slurp(m_shooterSubsystem, SpeedConstants.SLURP_SPEED));

@@ -32,7 +32,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     if(Constants.SpeedConstants.isTunable) {
-      SmartDashboard.putNumber("Speed", m_intakeDrive.get());
+      SmartDashboard.putNumber("Intake Speed", m_intakeDrive.get());
       SmartDashboard.putBoolean("distanceSensor", distanceSensor.get());
     }
   }

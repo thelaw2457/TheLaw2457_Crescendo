@@ -28,8 +28,8 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     if(Constants.SpeedConstants.isTunable) {
-      SmartDashboard.putNumber("Speed", m_bottomShooter.get());
-      SmartDashboard.putNumber("Speed", m_topShooter.get());
+      SmartDashboard.putNumber("Bottom Speed", m_bottomShooter.get());
+      SmartDashboard.putNumber("Top Speed", m_topShooter.get());
     }
   }
 

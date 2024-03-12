@@ -200,6 +200,10 @@ public static class SpeedConstants {
   // Belt Speeds
   public static final double BELT_FORWARD = 0.3;
   public static final double BELT_REVERSE = -0.3;
+
+  //Shooter Lift Speeds
+  public static final double SLIFT_UP = 0.5;
+  public static final double SLIFT_DOWN = -0.5;
   
   // Shooter Speeds
   public static final double DROOL_SPEED = -0.2;

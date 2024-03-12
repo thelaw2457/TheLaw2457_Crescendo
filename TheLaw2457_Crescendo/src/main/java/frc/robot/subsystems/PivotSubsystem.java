@@ -31,7 +31,7 @@ public class PivotSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
 
     if(Constants.SpeedConstants.isTunable) {
-      SmartDashboard.putNumber("PIvot Speed", m_pivot.get());
+      SmartDashboard.putNumber("Pivot Speed", m_pivot.get());
       SmartDashboard.putNumber("absEncoder Pos.", absEncoder.getAbsolutePosition());
     }
   }

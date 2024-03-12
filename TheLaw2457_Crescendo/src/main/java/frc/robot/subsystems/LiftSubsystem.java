@@ -15,7 +15,7 @@ import frc.robot.Constants;
 public class LiftSubsystem extends SubsystemBase {
   /** Creates a new LiftSubsystem. */
 
-private final CANSparkMax m_lift = new CANSparkMax(16, MotorType.kBrushless);
+private final CANSparkMax m_lift = new CANSparkMax(72, MotorType.kBrushless);
 
   public LiftSubsystem() {
     m_lift.setIdleMode(IdleMode.kBrake);
