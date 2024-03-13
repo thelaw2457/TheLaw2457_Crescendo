@@ -44,4 +44,8 @@ public void stop() {
   m_pivot.set(0);
 }
 
+public double getPosition() {
+  return absEncoder.getDistance();
+}
+
 }

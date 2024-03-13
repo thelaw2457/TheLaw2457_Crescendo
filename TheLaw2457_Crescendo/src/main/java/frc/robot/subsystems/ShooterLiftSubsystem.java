@@ -38,4 +38,9 @@ public class ShooterLiftSubsystem extends SubsystemBase {
   public void stop() {
     m_shooterLift.set(0);
   }
+
+  public double getPosition(){
+  return sLiftPot.get();
+  }
+
 }

@@ -214,8 +214,8 @@ public static class SpeedConstants {
   public static final double AUTO_SPIT_SPEED = 0.6;
   public static final double AUTO_SPEW_SPEED = 0.7; // 0.6
   public static final double AUTO_SLURP_SPEED = 0.15;
-  public static final double PIVOT_UP = 0.3;
-  public static final double PIVOT_DOWN = -0.3;
+  public static final double PIVOT_UP = 0.2;
+  public static final double PIVOT_DOWN = -0.2;
 }
 
 public static class MarvinConstants {

@@ -29,7 +29,10 @@ private double sLiftSpeed;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SLIFT_SUBSYSTEM.set(sLiftSpeed);
+    if (SLIFT_SUBSYSTEM.getPosition() >= 14) {
+      SLIFT_SUBSYSTEM.set(0);
+    } else 
+        SLIFT_SUBSYSTEM.set(sLiftSpeed);
   }
 
   // Called once the command ends or is interrupted.

@@ -29,7 +29,10 @@ public class LiftAscend extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    LIFT_SUBSYSTEM.set(liftSpeed);
+    if (LIFT_SUBSYSTEM.getPosition() >= 13) {
+      LIFT_SUBSYSTEM.set(0);
+    } else
+        LIFT_SUBSYSTEM.set(liftSpeed);
   }
 
   // Called once the command ends or is interrupted.
