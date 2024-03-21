@@ -30,7 +30,7 @@ public class PivotDown extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (PIVOT_SUBSYSTEM.getPosition() <= .17) {
+    if (PIVOT_SUBSYSTEM.getPosition() <= .33) { //.13
       PIVOT_SUBSYSTEM.set(0);
     } else
         PIVOT_SUBSYSTEM.set(pivotSpeed);

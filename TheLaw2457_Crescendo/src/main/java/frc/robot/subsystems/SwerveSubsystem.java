@@ -4,19 +4,27 @@
 
 package frc.robot.subsystems;
 
+import java.sql.Driver;
+import java.util.Optional;
 import java.util.function.DoubleSupplier;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics.SwerveDriveWheelStates;
+import edu.wpi.first.math.proto.Kinematics;
 import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -28,6 +36,8 @@ public class SwerveSubsystem extends SubsystemBase {
 
   private final SwerveDriveOdometry swerveOdometry;
 
+  private final SwerveDriveKinematics kinematics;
+
   private final AHRS gyro;
 
   private final Timer timer;
@@ -35,6 +45,7 @@ public class SwerveSubsystem extends SubsystemBase {
   public SwerveSubsystem() {
     gyro = new AHRS();
     zeroGyro();
+    AutoBuilder.configureHolonomic(this::getPose, this::resetPose, this::getSpeeds, this::driveFieldRelative, Constants.kSwerve.pathFollowerConfig, this::shouldFlipAutoPath, this);
 
     modules = new SwerveModule[] {
       new SwerveModule(0, Constants.kSwerve.MOD_0_Constants),
@@ -46,6 +57,10 @@ public class SwerveSubsystem extends SubsystemBase {
     swerveOdometry = new SwerveDriveOdometry(Constants.kSwerve.KINEMATICS, getYaw(), getPositions());
 
     timer = new Timer();
+
+   //kinematics = new SwerveDriveKinematics(new Translation2d[0]);
+   kinematics = Constants.kSwerve.KINEMATICS;
+
   }
 
   public void printAngles() {
@@ -55,6 +70,35 @@ public class SwerveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Mod 3: " , modules[3].getCanCoder());
   }
 
+  public void setPose(Pose2d pose) {
+    swerveOdometry.resetPosition(getYaw(), getPositions(), pose);
+  }
+
+  public void resetPose(Pose2d pose) {
+    this.zeroGyro();
+    swerveOdometry.resetPosition(gyro.getRotation2d(), getPositions() ,pose);
+  }
+
+   public ChassisSpeeds getSpeeds() {
+    SwerveDriveWheelStates s1 = new SwerveDriveWheelStates(getStates());
+   
+    return kinematics.toChassisSpeeds(s1);
+
+   }
+
+   public void driveFieldRelative(ChassisSpeeds fieldRelativeSpeeds) {
+      this.drive(fieldRelativeSpeeds.vxMetersPerSecond, fieldRelativeSpeeds.vyMetersPerSecond, fieldRelativeSpeeds.omegaRadiansPerSecond);
+   }
+
+   public boolean shouldFlipAutoPath() {
+    Optional<DriverStation.Alliance> alliance = DriverStation.getAlliance();
+    if (alliance.isPresent()) {
+      if (alliance.get() == Alliance.Red) {
+        return true;
+      }
+    }
+    return false;
+   }
 
   /** 
    * This is called a command factory method, and these methods help reduce the
@@ -195,6 +239,7 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public void resetOdometry(Pose2d pose) {
+
     swerveOdometry.resetPosition(getYaw(), getPositions(), pose);
   }
 

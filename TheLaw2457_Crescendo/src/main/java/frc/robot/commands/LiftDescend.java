@@ -29,7 +29,7 @@ public class LiftDescend extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (LIFT_SUBSYSTEM.getPosition() <= 3.5) {
+    if (LIFT_SUBSYSTEM.getPosition() <= 4.3) {
       LIFT_SUBSYSTEM.set(0);
     } else
         LIFT_SUBSYSTEM.set(liftSpeed);

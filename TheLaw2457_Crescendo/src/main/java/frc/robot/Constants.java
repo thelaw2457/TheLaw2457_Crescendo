@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
 import com.revrobotics.CANSparkBase.IdleMode;
 
 import edu.wpi.first.math.geometry.Translation2d;
@@ -40,6 +43,14 @@ public class Constants {
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
     public static final double NEO_MAX_SPEED = 5676;
 
+    public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
+      new PIDConstants(5.0, 0, 0),
+      new PIDConstants(5.0,0,0),
+      3.5,
+      .3724,
+      new ReplanningConfig()
+    );
+
     public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(
       new Translation2d(WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
       new Translation2d(WHEEL_BASE / 2.0, -TRACK_WIDTH / 2.0),
@@ -57,8 +68,8 @@ public class Constants {
     // public static final double ANGLE_RPM_TO_RADIANS_PER_SECOND = DRIVE_RPM_TO_METERS_PER_SECOND / Math.hypot(TRACK_WIDTH / 2, WHEEL_BASE / 2);
 
     /** Speed ramp. */
-    public static final double OPEN_LOOP_RAMP = 0.25;
-    public static final double CLOSED_LOOP_RAMP = 0.0;
+    public static final double OPEN_LOOP_RAMP = 0.25; //.25
+    public static final double CLOSED_LOOP_RAMP = 0.0; // we don't use closed loop as far as I know
 
     /** Current limiting. */
     public static final int DRIVE_CURRENT_LIMIT = 35;
@@ -82,8 +93,8 @@ public class Constants {
     public static final double ANGLE_KF = 0.0;
     
     /** Swerve constraints. */
-    public static final double MAX_VELOCITY_METERS_PER_SECOND = 3; //initially 2.75 | OG 2
-
+    public static final double MAX_VELOCITY_METERS_PER_SECOND = 3.5; //initially 3 | OG 2 | change to 4 before Heartland probably
+    
     /** Inversions. */
     public static final boolean DRIVE_MOTOR_INVERSION = true;
     public static final boolean ANGLE_MOTOR_INVERSION = false;
@@ -103,7 +114,8 @@ public class Constants {
       12,
       13,
       // -0.055 rot
-      -0.055 * 360
+      //160.137
+      340.1
       //20.3
     );
 
@@ -112,7 +124,8 @@ public class Constants {
       22,
       23,
       // .457 rot
-      0.957 * 360
+      //345.146 - 180
+      344.8
       //238.711
     );
 
@@ -120,17 +133,19 @@ public class Constants {
       31,
       32,
       33,
+      //181.582
       // 0.027 rot
-      0.027 * 360
+      2.98
     );
 
     public static final SwerveModuleConstants MOD_3_Constants = new SwerveModuleConstants(
       41,
       42,
       43,
+      //-103.447 - 180
       //181.845
       // -0.223 rot
-      0.323 * 360
+      102.65
     );
   }
 
@@ -192,22 +207,24 @@ public static class SpeedConstants {
   // Intake Speeds
   public static final double INTAKE_FORWARD = 0.4;
   public static final double INTAKE_REVERSE = -0.4;
+  public static final double INTAKE_STOP = 0;
 
   // Lift Speeds
   public static final double LIFT_UP = 0.4;
-  public static final double LIFT_DOWN = -0.4;
+  public static final double LIFT_DOWN = -0.6;
 
   // Belt Speeds
-  public static final double BELT_FORWARD = 0.3;
+  public static final double FASTER_BELT = .6;
+  public static final double BELT_FORWARD = 0.42; //.3
   public static final double BELT_REVERSE = -0.3;
 
   //Shooter Lift Speeds
-  public static final double SLIFT_UP = 0.5;
+  public static final double SLIFT_UP = 0.6; //.5
   public static final double SLIFT_DOWN = -0.5;
   
   // Shooter Speeds
-  public static final double DROOL_SPEED = -0.2;
-  public static final double SPIT_SPEED = 0.42; //0.5
+  public static final double DROOL_SPEED = -0.1;
+  public static final double SPIT_SPEED = 0.6; //0.1
   public static final double SPEW_SPEED = 0.42; // 0.8
   public static final double SLURP_SPEED = 0; //0.15
   public static final double AUTO_DROOL_SPEED = -0.2;
@@ -216,6 +233,8 @@ public static class SpeedConstants {
   public static final double AUTO_SLURP_SPEED = 0.15;
   public static final double PIVOT_UP = 0.2;
   public static final double PIVOT_DOWN = -0.2;
+  public static final double SHOOTER_STOP = 0;
+  public static final double ROLLER_STOP = 0;
 }
 
 public static class MarvinConstants {

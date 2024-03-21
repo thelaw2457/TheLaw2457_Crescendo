@@ -7,13 +7,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class Drool extends Command {
+public class ShooterStop extends Command {
 
-  private ShooterSubsystem SHOOTER_SUBSYSTEM;
-  private double shooterSpeed;
+private ShooterSubsystem SHOOTER_SUBSYSTEM;
+private double shooterSpeed;
 
-  /** Creates a new CubeDrool. */
-  public Drool(ShooterSubsystem shooter, double speed) {
+  /** Creates a new ShooterStop. */
+  public ShooterStop(ShooterSubsystem shooter, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     this.SHOOTER_SUBSYSTEM = shooter;
@@ -29,13 +29,13 @@ public class Drool extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOTER_SUBSYSTEM.set(shooterSpeed); 
+    SHOOTER_SUBSYSTEM.set(shooterSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SHOOTER_SUBSYSTEM.set(0);
+    SHOOTER_SUBSYSTEM.stop();
   }
 
   // Returns true when the command should end.
