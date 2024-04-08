@@ -9,22 +9,20 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.PivotConstants;
 import frc.robot.subsystems.PivotSubsystem;
 
-public class PivotDown extends Command {
-  /** Creates a new PivotDown. */
+public class PivotPIDPodium extends Command {
+  /** Creates a new PivotPIDPodium. */
 
-  private PivotSubsystem PIVOT_SUBSYSTEM;
+  private PivotSubsystem PIVOTSUBSYSTEM;
   private PIDController pidController;
-  private double pivotSpeed;
-  
 
-  public PivotDown(PivotSubsystem pivot, double setpoint) {
+  public PivotPIDPodium(PivotSubsystem pivot, double setpoint) {
     // Use addRequirements() here to declare subsystem dependencies.
 
-    this.PIVOT_SUBSYSTEM = pivot;
+    this.PIVOTSUBSYSTEM = pivot;
     this.pidController = new PIDController(PivotConstants.PIVOT_KP, PivotConstants.PIVOT_KI, PivotConstants.PIVOT_KD);
     pidController.setSetpoint(setpoint);
 
-    addRequirements(PIVOT_SUBSYSTEM);
+    addRequirements(PIVOTSUBSYSTEM);
   }
 
   // Called when the command is initially scheduled.
@@ -34,14 +32,14 @@ public class PivotDown extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = pidController.calculate(PIVOT_SUBSYSTEM.getPosition());
-    PIVOT_SUBSYSTEM.set(speed);
+    double speed = pidController.calculate(PIVOTSUBSYSTEM.getPosition());
+    PIVOTSUBSYSTEM.set(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    PIVOT_SUBSYSTEM.set(0);
+    PIVOTSUBSYSTEM.stop();
   }
 
   // Returns true when the command should end.

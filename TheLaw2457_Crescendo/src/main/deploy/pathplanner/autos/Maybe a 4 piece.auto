@@ -1,0 +1,97 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.3239288017037572,
+      "y": 5.5430292057165325
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Front to Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Note to Side Note"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Side Note to Front Note Pos"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Front Note to Amp Note"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Amp Note to Front Note Pos"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "End Intake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Shooter"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

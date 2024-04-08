@@ -1,0 +1,61 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.6924444618120005,
+      "y": 6.700750495518085
+    },
+    "rotation": 58.1509486809447
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Side 4 Piece Start"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Side 4 Piece Middle Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Roller"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

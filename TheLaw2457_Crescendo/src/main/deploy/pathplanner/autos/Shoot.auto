@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4408703461281565,
-      "y": 5.55472336015897
+      "x": 0.7275269251393202,
+      "y": 6.689056341075646
     },
-    "rotation": 0.0
+    "rotation": 55.573523418560896
   },
   "command": {
     "type": "sequential",
@@ -21,6 +21,12 @@
           "type": "named",
           "data": {
             "name": "Roller"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Shooter"
           }
         }
       ]

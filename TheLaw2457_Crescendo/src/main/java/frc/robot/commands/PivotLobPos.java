@@ -9,15 +9,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.PivotConstants;
 import frc.robot.subsystems.PivotSubsystem;
 
-public class PivotDown extends Command {
-  /** Creates a new PivotDown. */
+public class PivotLobPos extends Command {
+  /** Creates a new PivotLobPos. */
 
   private PivotSubsystem PIVOT_SUBSYSTEM;
   private PIDController pidController;
-  private double pivotSpeed;
-  
 
-  public PivotDown(PivotSubsystem pivot, double setpoint) {
+  public PivotLobPos(PivotSubsystem pivot, double setpoint) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     this.PIVOT_SUBSYSTEM = pivot;
@@ -41,7 +39,7 @@ public class PivotDown extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    PIVOT_SUBSYSTEM.set(0);
+    PIVOT_SUBSYSTEM.stop();
   }
 
   // Returns true when the command should end.

@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.SpeedConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.PivotConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.BeltForward;
 import frc.robot.commands.BeltReverse;
@@ -25,6 +26,8 @@ import frc.robot.commands.Spew;
 import frc.robot.commands.Spit;
 import frc.robot.commands.PivotUp;
 import frc.robot.commands.PivotDown;
+import frc.robot.commands.PivotLobPos;
+import frc.robot.commands.PivotPIDPodium;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.BeltDriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -91,18 +94,20 @@ public class RobotContainer {
 
   public void configureNamedAutoCommands() {
     NamedCommands.registerCommand("Shoot",
-        new InstantCommand(() -> m_shooterSubsystem.set(Constants.SpeedConstants.SPEW_SPEED))
-            .andThen(new WaitCommand(1.0)));
+        new InstantCommand(() -> m_shooterSubsystem.set(Constants.SpeedConstants.SPIT_SPEED))
+            .andThen(new WaitCommand(1.5))
+            .andThen(new InstantCommand(() -> m_shooterSubsystem.set(Constants.SpeedConstants.SHOOTER_STOP))));
     NamedCommands.registerCommand("Stop Shooter",
         new ShooterStop(m_shooterSubsystem, Constants.SpeedConstants.SHOOTER_STOP));
     NamedCommands.registerCommand("Roller",
-        new InstantCommand(() -> m_beltDriveSubsystem.set(Constants.SpeedConstants.BELT_FORWARD))
+        new InstantCommand(() -> m_beltDriveSubsystem.set(Constants.SpeedConstants.FASTER_BELT))
             .andThen(new WaitCommand(0.5))
             .andThen(new InstantCommand(() -> m_beltDriveSubsystem.set(Constants.SpeedConstants.ROLLER_STOP))));
     NamedCommands.registerCommand("End Roller",
         new RollerStop(m_beltDriveSubsystem, Constants.SpeedConstants.ROLLER_STOP));
     NamedCommands.registerCommand("Start Intake",
-        new IntakeForward(m_intakeSubsystem, Constants.SpeedConstants.INTAKE_FORWARD));
+        new InstantCommand(() -> m_intakeSubsystem.set(Constants.SpeedConstants.INTAKE_FORWARD))
+            .andThen(new InstantCommand(() -> m_shooterSubsystem.set(Constants.SpeedConstants.SPIT_SPEED))));
     NamedCommands.registerCommand("End Intake",
         new IntakeStop(m_intakeSubsystem, Constants.SpeedConstants.INTAKE_STOP));
   }
@@ -139,14 +144,14 @@ public class RobotContainer {
         0));
 
     // Field Orientation
-    new JoystickButton(driverControl, 7).onTrue(swerveSubsystem.zeroGyroCommand());
+    new JoystickButton(driverControl, 5).onTrue(swerveSubsystem.zeroGyroCommand());
 
     // Intake
-    new JoystickButton(driverControl, 12)
+    new JoystickButton(driverControl, 8)
         .whileTrue(new IntakeForward(m_intakeSubsystem, SpeedConstants.INTAKE_FORWARD));
     // new JoystickButton(driverControl, 11).whileTrue(new
     // IntakeForward(m_intakeSubsystem, SpeedConstants.INTAKE_FORWARD));
-    new JoystickButton(driverControl, 9).whileTrue(new IntakeReverse(m_intakeSubsystem, SpeedConstants.INTAKE_REVERSE));
+    new JoystickButton(driverControl, 7).whileTrue(new IntakeReverse(m_intakeSubsystem, SpeedConstants.INTAKE_REVERSE));
     // new JoystickButton(driverControl, 10).whileTrue(new
     // IntakeReverse(m_intakeSubsystem, SpeedConstants.INTAKE_REVERSE));
 
@@ -156,8 +161,8 @@ public class RobotContainer {
     // IntakeReverse(m_intakeSubsystem, SpeedConstants.INTAKE_REVERSE));
 
     // Shooter Lift
-    new JoystickButton(xboxController, 4).whileTrue(new ShooterLiftUp(m_sLiftSubsystem, SpeedConstants.SLIFT_UP));
-    new JoystickButton(xboxController, 1).whileTrue(new ShooterLiftDown(m_sLiftSubsystem, SpeedConstants.SLIFT_DOWN));
+    // new JoystickButton(xboxController, 4).whileTrue(new ShooterLiftUp(m_sLiftSubsystem, SpeedConstants.SLIFT_UP));
+    // new JoystickButton(xboxController, 1).whileTrue(new ShooterLiftDown(m_sLiftSubsystem, SpeedConstants.SLIFT_DOWN));
 
     // Lift
     new JoystickButton(xboxController, 2).whileTrue(new LiftAscend(m_liftSubsystem, SpeedConstants.LIFT_UP));
@@ -168,18 +173,20 @@ public class RobotContainer {
     // SpeedConstants.SLURP_SPEED));
     // new JoystickButton(xboxController, 6).whileTrue(new Drool(m_shooterSubsystem,
     // SpeedConstants.DROOL_SPEED));
-    new JoystickButton(xboxController, 5).whileTrue(new Spit(m_shooterSubsystem, SpeedConstants.SPIT_SPEED));
-    new JoystickButton(xboxController, 6).whileTrue(new Spew(m_shooterSubsystem, SpeedConstants.SPEW_SPEED));
+    new JoystickButton(xboxController, 5).whileTrue(new Spit(m_shooterSubsystem, SpeedConstants.SPEW_SPEED));
+    new JoystickButton(xboxController, 6).whileTrue(new Spew(m_shooterSubsystem, SpeedConstants.SPIT_SPEED));
     new JoystickButton(driverControl, 4).whileTrue(new Drool(m_shooterSubsystem, SpeedConstants.DROOL_SPEED));
 
     // Shooter Pivot
-    new JoystickButton(xboxController, 8).whileTrue(new PivotUp(m_pivotSubsystem, SpeedConstants.PIVOT_UP));
-    new JoystickButton(xboxController, 7).whileTrue(new PivotDown(m_pivotSubsystem, SpeedConstants.PIVOT_DOWN));
+    new JoystickButton(xboxController, 8).whileTrue(new PivotUp(m_pivotSubsystem, PivotConstants.PIVOT_UP_POS));
+    new JoystickButton(xboxController, 7).whileTrue(new PivotDown(m_pivotSubsystem, PivotConstants.PIVOT_DOWN_POS));
+    // new JoystickButton(xboxController, 1).whileTrue(new PivotPIDPodium(m_pivotSubsystem, PivotConstants.PIVOT_PODIUM_POS));
+    new JoystickButton(xboxController, 4).whileTrue(new PivotLobPos(m_pivotSubsystem, PivotConstants.PIVOT_LOB_POS));
 
     // BeltDrive
-    new JoystickButton(driverControl, 1).whileTrue(new BeltForward(m_beltDriveSubsystem, SpeedConstants.BELT_FORWARD));
-    new JoystickButton(driverControl, 2).whileTrue(new BeltReverse(m_beltDriveSubsystem, SpeedConstants.BELT_REVERSE));
-    new JoystickButton(driverControl, 3).whileTrue(new BeltForward(m_beltDriveSubsystem, SpeedConstants.FASTER_BELT));
+    new JoystickButton(driverControl, 9).whileTrue(new BeltForward(m_beltDriveSubsystem, SpeedConstants.FASTER_BELT));
+    new JoystickButton(driverControl, 6).whileTrue(new BeltReverse(m_beltDriveSubsystem, SpeedConstants.BELT_REVERSE));
+    new JoystickButton(driverControl, 10).whileTrue(new BeltForward(m_beltDriveSubsystem, SpeedConstants.BELT_FORWARD));
   }
 
   /**

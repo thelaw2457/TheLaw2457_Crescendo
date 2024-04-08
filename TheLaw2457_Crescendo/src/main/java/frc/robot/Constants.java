@@ -44,8 +44,8 @@ public class Constants {
     public static final double NEO_MAX_SPEED = 5676;
 
     public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
-      new PIDConstants(5.0, 0, 0),
-      new PIDConstants(5.0,0,0),
+      new PIDConstants(2.0, 0, .7),
+      new PIDConstants(2.0,0,.7),
       3.5,
       .3724,
       new ReplanningConfig()
@@ -214,8 +214,8 @@ public static class SpeedConstants {
   public static final double LIFT_DOWN = -0.6;
 
   // Belt Speeds
-  public static final double FASTER_BELT = .6;
-  public static final double BELT_FORWARD = 0.42; //.3
+  public static final double FASTER_BELT = .8;
+  public static final double BELT_FORWARD = 0.37; //.3
   public static final double BELT_REVERSE = -0.3;
 
   //Shooter Lift Speeds
@@ -225,8 +225,8 @@ public static class SpeedConstants {
   // Shooter Speeds
   public static final double DROOL_SPEED = -0.1;
   public static final double SPIT_SPEED = 0.6; //0.1
-  public static final double SPEW_SPEED = 0.42; // 0.8
-  public static final double SLURP_SPEED = 0; //0.15
+  public static final double SPEW_SPEED = 0.3; // 0.8
+  public static final double SLURP_SPEED = 0.62; //0.15
   public static final double AUTO_DROOL_SPEED = -0.2;
   public static final double AUTO_SPIT_SPEED = 0.6;
   public static final double AUTO_SPEW_SPEED = 0.7; // 0.6
@@ -239,6 +239,18 @@ public static class SpeedConstants {
 
 public static class MarvinConstants {
   public static final double MARVIN_SPEED = 2000;
+}
+
+public static class PivotConstants {
+  public static final double PIVOT_KP = 1.75;
+  public static final double PIVOT_KI = .15;
+  public static final double PIVOT_KD = .5;
+
+  public static final double PIVOT_PODIUM_POS = .312;
+  public static final double PIVOT_UP_POS = .4;
+  public static final double PIVOT_DOWN_POS = .335;
+  public static final double PIVOT_LOB_POS = .36;
+
 }
 
 }
